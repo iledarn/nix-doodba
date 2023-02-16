@@ -8,6 +8,11 @@ let
     ptpython
     invoke
     pre-commit
+    autopep8
+    pip
+    jira
+    packaging
+    typing-extensions
     # other python packages you want
   ];
   python-with-my-packages = python3.withPackages my-python-packages;
@@ -21,9 +26,15 @@ in
 
     fd
     ripgrep
+    postgresql
   ];
 
   shellHook = ''
     alias dcd="docker compose down"
+    alias docker-compose="docker compose"
+    export PIP_PREFIX="$(pwd)/_build/pip_packages"
+    export PYTHONPATH="$(pwd)/_build/pip_packages/lib/python3.10/site-packages:$PYTHONPATH"
+    export PATH="$(pwd)/_build/pip_packages/bin:$PATH"
+    # PYTHONPATH=${python-with-my-packages}/${python-with-my-packages.sitePackages}
   '';
 }
