@@ -6,6 +6,7 @@ with pkgs;
 let
   my-python-packages = python-packages: with python-packages; [
     ptpython
+pydrive2
     invoke
     pre-commit
     autopep8
